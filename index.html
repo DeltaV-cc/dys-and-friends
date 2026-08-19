@@ -74,10 +74,27 @@
       max-width: 700px;
     }
 
-    .hero-logo {
-      width: min(280px, 70vw);
-      margin-bottom: 1.5rem;
-      filter: brightness(0) invert(1);
+    .hero-logo-morph {
+      position: relative;
+      height: clamp(2.5rem, 8vw, 4.5rem);
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+      filter: url(#threshold-logo) blur(0.6px);
+    }
+
+    .hero-logo-morph span {
+      position: absolute;
+      inset: 0;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .hero-subtitle {
@@ -579,34 +596,6 @@
       border-top: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* MORPHING TEXT */
-    .morph-wrap {
-      position: relative;
-      height: 2.8rem;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto 1rem;
-      filter: url(#threshold) blur(0.6px);
-    }
-
-    @media (min-width: 768px) {
-      .morph-wrap { height: 3.5rem; }
-    }
-
-    .morph-wrap span {
-      position: absolute;
-      inset: 0;
-      display: inline-block;
-      width: 100%;
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 5vw, 2.8rem);
-      font-weight: 700;
-      color: var(--gold-light);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
     .filters-svg { display: none; }
 
     /* FADE-IN ANIMATION */
@@ -627,14 +616,13 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <img src="assets/logo.png" alt="DYS & Food" class="hero-logo">
-      <div class="morph-wrap">
-        <span id="morph-text1"></span>
-        <span id="morph-text2"></span>
+      <div class="hero-logo-morph">
+        <span id="logo-text1"></span>
+        <span id="logo-text2"></span>
       </div>
       <svg class="filters-svg" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <filter id="threshold">
+          <filter id="threshold-logo">
             <feColorMatrix in="SourceGraphic" type="matrix"
               values="1 0 0 0 0
                       0 1 0 0 0
@@ -643,6 +631,7 @@
           </filter>
         </defs>
       </svg>
+      <p class="hero-subtitle">Vol. 1 — 22 Août 2026</p>
       <h1 class="hero-title">Hors du Temps</h1>
       <p class="hero-date">13h30 – 23h30</p>
       <p class="hero-location"><a href="https://www.google.com/maps/search/Jussy+Meuret+Genève" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.8);text-decoration:underline;text-underline-offset:3px;">Jussy – Meuret, arrêt de bus &middot; Genève</a></p>
@@ -786,61 +775,45 @@
     }, { threshold: 0.15 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Morphing text
-    (function() {
-      const texts = ["Gastronomie", "Art", "Musique", "Artisanat", "Vin", "22 Août 2026"];
-      const morphTime = 1.5;
-      const cooldownTime = 0.5;
-      const el1 = document.getElementById('morph-text1');
-      const el2 = document.getElementById('morph-text2');
-      let textIndex = 0;
-      let morph = 0;
-      let cooldown = cooldownTime;
-      let time = new Date();
-
+    // Morphing text engine
+    function initMorph(id1, id2, texts, mTime, cTime) {
+      const el1 = document.getElementById(id1);
+      const el2 = document.getElementById(id2);
+      if (!el1 || !el2) return;
+      let textIndex = 0, morph = 0, cooldown = cTime, time = new Date();
       el1.textContent = texts[0];
-      el2.textContent = texts[1];
-
-      function setMorph(fraction) {
-        el2.style.filter = 'blur(' + Math.min(8 / fraction - 8, 100) + 'px)';
-        el2.style.opacity = (Math.pow(fraction, 0.4) * 100) + '%';
-        const inv = 1 - fraction;
-        el1.style.filter = 'blur(' + Math.min(8 / inv - 8, 100) + 'px)';
+      el2.textContent = texts[1 % texts.length];
+      function setM(f) {
+        el2.style.filter = 'blur(' + Math.min(8/f - 8, 100) + 'px)';
+        el2.style.opacity = (Math.pow(f, 0.4) * 100) + '%';
+        const inv = 1 - f;
+        el1.style.filter = 'blur(' + Math.min(8/inv - 8, 100) + 'px)';
         el1.style.opacity = (Math.pow(inv, 0.4) * 100) + '%';
         el1.textContent = texts[textIndex % texts.length];
         el2.textContent = texts[(textIndex + 1) % texts.length];
       }
-
-      function doCooldown() {
+      function doC() {
         morph = 0;
-        el2.style.filter = 'none';
-        el2.style.opacity = '100%';
-        el1.style.filter = 'none';
-        el1.style.opacity = '0%';
+        el2.style.filter = 'none'; el2.style.opacity = '100%';
+        el1.style.filter = 'none'; el1.style.opacity = '0%';
       }
-
-      function animate() {
+      (function animate() {
         requestAnimationFrame(animate);
-        const now = new Date();
-        const dt = (now - time) / 1000;
-        time = now;
-        cooldown -= dt;
+        const now = new Date(), dt = (now - time) / 1000;
+        time = now; cooldown -= dt;
         if (cooldown <= 0) {
-          morph -= cooldown;
-          cooldown = 0;
-          let fraction = morph / morphTime;
-          if (fraction > 1) {
-            cooldown = cooldownTime;
-            fraction = 1;
-          }
-          setMorph(fraction);
-          if (fraction === 1) textIndex++;
-        } else {
-          doCooldown();
-        }
-      }
-      animate();
-    })();
+          morph -= cooldown; cooldown = 0;
+          let f = morph / mTime;
+          if (f > 1) { cooldown = cTime; f = 1; }
+          setM(f);
+          if (f === 1) textIndex++;
+        } else { doC(); }
+      })();
+    }
+
+    // Logo: morph between brand names
+    initMorph('logo-text1', 'logo-text2', ["DYS & Food", "DYS & Friends"], 1.5, 2);
+
   </script>
 
 </body>
