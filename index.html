@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hors du Temps — DYS & Friends | 22 Août 2026</title>
+  <meta name="description" content="Une journée hors du temps — Gastronomie, Art & Musique. Jussy, Genève. 22 août 2026.">
+  <meta property="og:title" content="Hors du Temps — DYS & Friends">
+  <meta property="og:description" content="Gastronomie, Art & Musique. Jussy – Meuret, Genève. Samedi 22 août 2026, 13h30–23h30.">
+  <meta property="og:image" content="assets/bg-sunset.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #c8a84e;
+      --gold-light: #e8d5a0;
+      --purple: #6b3a6b;
+      --dark: #1a1a1a;
+      --cream: #f5f0e8;
+      --warm-white: #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--warm-white);
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/bg-sunset.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.15) 40%,
+        rgba(0,0,0,0.5) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      max-width: 700px;
+    }
+
+    .hero-logo {
+      width: min(280px, 70vw);
+      margin-bottom: 1.5rem;
+      filter: brightness(0) invert(1);
+      opacity: 0.95;
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--gold-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero-date {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #fff;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-location {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn:hover {
+      background: #b8943e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200,168,78,0.4);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 30px;
+      background: rgba(255,255,255,0.4);
+      margin: 0.5rem auto 0;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .section-title .accent {
+      color: var(--gold);
+    }
+
+    .section-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* INTRO */
+    .intro {
+      text-align: center;
+      background: var(--cream);
+      max-width: 100%;
+      padding: 5rem 1.5rem;
+    }
+
+    .intro-inner {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .intro .tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--purple);
+      margin-bottom: 1.5rem;
+    }
+
+    .intro .body {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    /* CUISINE */
+    .cuisine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .cuisine-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--cream);
+      border-top: 3px solid var(--gold);
+      transition: transform 0.3s ease;
+    }
+
+    .cuisine-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .cuisine-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--dark);
+    }
+
+    .cuisine-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    /* PARALLAX BREAK */
+    .parallax-break {
+      position: relative;
+      height: 50vh;
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    .parallax-break::before {
+      content: '';
+      position: absolute;
+      inset: -20% 0;
+      background: url('assets/bg-sky.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+
+    .parallax-break::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: 1;
+    }
+
+    .parallax-quote {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .parallax-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      color: #fff;
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.5;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* ART & MUSIC */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .two-col .col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .two-col .col p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem 0;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      text-align: center;
+      background: var(--dark);
+      max-width: 100%;
+      padding: 5rem 1.5rem;
+      color: #fff;
+    }
+
+    .final-cta .section-title { color: #fff; }
+
+    .final-cta .details {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+    }
+
+    .final-cta .payment {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .final-cta .cta-btn {
+      margin-top: 2rem;
+    }
+
+    .calendar-options {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .cal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .cal-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      color: #999;
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* FADE-IN ANIMATION */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="assets/logo.jpg" alt="DYS & Food" class="hero-logo">
+      <p class="hero-subtitle">Vol. 1 — Août 2026</p>
+      <h1 class="hero-title">Hors du Temps</h1>
+      <p class="hero-date">Samedi 22 Août 2026 &middot; 13h30 – 23h30</p>
+      <p class="hero-location">Jussy – Meuret, arrêt de bus &middot; Genève</p>
+      <a href="#reserver" class="cta-btn">Réserver dans mon agenda</a>
+    </div>
+    <div class="scroll-hint">Découvrir</div>
+  </section>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-inner fade-in">
+      <p class="tagline">Une journée pensée comme une véritable parenthèse hors du temps</p>
+      <p class="body">
+        Où la gastronomie, l'art, l'artisanat et la musique se rencontrent dans une ambiance
+        libre, chaleureuse et vivante. L'idée est simple&nbsp;: se retrouver, profiter, découvrir et partager.
+      </p>
+    </div>
+  </div>
+
+  <!-- CUISINE -->
+  <section>
+    <h2 class="section-title fade-in">Le plaisir de la <span class="accent">cuisine</span></h2>
+    <p class="section-text fade-in">
+      Une cuisine généreuse autour de beaux produits, travaillés avec respect, créativité et simplicité.
+      Une cuisine qui laisse la place au produit, mais surtout au plaisir de manger et de partager.
+    </p>
+    <div class="cuisine-grid fade-in">
+      <div class="cuisine-card">
+        <h3>Végétal</h3>
+        <p>Produits de saison, fraîcheur et couleurs</p>
+      </div>
+      <div class="cuisine-card">
+        <h3>Viande</h3>
+        <p>De belles pièces cuisinées avec générosité</p>
+      </div>
+      <div class="cuisine-card">
+        <h3>Mer</h3>
+        <p>Poisson & produits de la mer — fraîcheur et simplicité</p>
+      </div>
+      <div class="cuisine-card">
+        <h3>Desserts</h3>
+        <p>Fruits de saison travaillés et braisés</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX BREAK -->
+  <div class="parallax-break">
+    <div class="parallax-quote">
+      <blockquote>
+        Venez découvrir. Venez partager.<br>Venez vivre le moment.
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- ART & MUSIC -->
+  <section>
+    <h2 class="section-title fade-in">Art, Artisanat <span class="accent">&</span> Musique</h2>
+    <div class="two-col fade-in">
+      <div class="col">
+        <h3>Art & Artisanat</h3>
+        <div class="divider"></div>
+        <p>
+          Photographes et peintres présenteront leurs œuvres tout au long de la journée.
+          Un artisan créateur de bijoux sera également présent pour faire découvrir son univers,
+          ses créations et son savoir-faire.
+        </p>
+      </div>
+      <div class="col">
+        <h3>Musique & Énergie</h3>
+        <div class="divider"></div>
+        <p>
+          Les DJ feront évoluer l'ambiance au fil des heures&nbsp;: une après-midi conviviale
+          qui laissera progressivement place à une énergie plus festive jusqu'à la soirée.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIN -->
+  <div class="intro">
+    <div class="intro-inner fade-in">
+      <h2 class="section-title">Vin <span class="accent">&</span> Convivialité</h2>
+      <p class="body">
+        Des vins locaux et différentes bières accompagneront la journée.
+        Un verre à la main, une assiette à partager, de la musique et de belles rencontres.
+      </p>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta" id="reserver">
+    <h2 class="section-title fade-in">Plus qu'un événement</h2>
+    <p class="section-text fade-in" style="color:rgba(255,255,255,0.75); margin-bottom: 1rem;">
+      Une rencontre entre la cuisine, l'art, l'artisanat, le vin et la musique,
+      portée par une seule envie&nbsp;: créer un moment vivant, authentique et chaleureux.
+    </p>
+    <div class="fade-in">
+      <p class="details">Samedi 22 Août 2026 &middot; 13h30 – 23h30</p>
+      <p class="details">Jussy – Meuret, arrêt de bus &middot; Genève</p>
+
+      <div class="calendar-options">
+        <a class="cta-btn"
+           href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hors%20du%20Temps%20%E2%80%94%20DYS%20%26%20Friends&dates=20260822T113000Z/20260822T213000Z&location=Jussy%20%E2%80%93%20Meuret%2C%20arr%C3%AAt%20de%20bus%2C%20Gen%C3%A8ve&details=Gastronomie%2C%20Art%20%26%20Musique.%20Une%20journ%C3%A9e%20hors%20du%20temps.%20Paiement%20%3A%20Cash%20%26%20TWINT"
+           target="_blank" rel="noopener">
+          Google Calendar
+        </a>
+        <a class="cal-link" href="hors-du-temps.ics" download>
+          Apple / Outlook (.ics)
+        </a>
+      </div>
+
+      <p class="payment">Paiement : Cash & TWINT</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 DYS & Food — The New Concept
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
