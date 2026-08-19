@@ -114,26 +114,96 @@
       margin-bottom: 2rem;
     }
 
-    .cta-btn {
+    /* INTERACTIVE HOVER BUTTON */
+    .hover-btn {
+      position: relative;
       display: inline-block;
+      overflow: hidden;
+      border-radius: 50px;
+      border: 2px solid var(--gold);
+      background: transparent;
       padding: 1rem 2.5rem;
-      background: var(--gold);
-      color: #fff;
+      cursor: pointer;
       text-decoration: none;
       font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      color: var(--gold);
+      min-width: 220px;
+      text-align: center;
     }
 
-    .cta-btn:hover {
-      background: #b8943e;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(200,168,78,0.4);
+    .hover-btn .btn-text {
+      display: inline-block;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hover-btn .btn-text-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      color: #fff;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hover-btn .btn-text-hover svg {
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hover-btn .btn-bg {
+      position: absolute;
+      left: 20%;
+      top: 40%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+
+    .hover-btn:hover .btn-text {
+      transform: translateX(40px);
+      opacity: 0;
+    }
+
+    .hover-btn:hover .btn-text-hover {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .hover-btn:hover .btn-bg {
+      left: -10%;
+      top: -10%;
+      width: 120%;
+      height: 120%;
+      border-radius: 0;
+    }
+
+    .hover-btn.btn-filled {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    .hover-btn.btn-filled .btn-bg {
+      background: #a07a2e;
     }
 
     .scroll-hint {
@@ -343,11 +413,11 @@
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: clamp(1.3rem, 3.5vw, 2rem);
-      color: #000;
+      color: var(--cream);
       text-align: center;
       max-width: 600px;
       line-height: 1.5;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 15px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.3);
     }
 
     /* ART & MUSIC — with bench photo bg */
@@ -494,32 +564,8 @@
       margin-top: 1.5rem;
     }
 
-    .calendar-options .cta-btn,
-    .calendar-options .cal-link {
-      padding: 1rem 2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-align: center;
-      min-width: 220px;
-    }
-
-    .cal-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      border: 2px solid var(--gold);
-      color: var(--gold);
-      text-decoration: none;
-      background: transparent;
-      transition: all 0.3s ease;
-    }
-
-    .cal-link:hover {
-      background: var(--gold);
-      color: #fff;
+    .calendar-options .hover-btn {
+      min-width: 240px;
     }
 
     /* FOOTER */
@@ -556,7 +602,11 @@
       <h1 class="hero-title">Hors du Temps</h1>
       <p class="hero-date">13h30 – 23h30</p>
       <p class="hero-location"><a href="https://www.google.com/maps/search/Jussy+Meuret+Genève" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.8);text-decoration:underline;text-underline-offset:3px;">Jussy – Meuret, arrêt de bus &middot; Genève</a></p>
-      <a href="#reserver" class="cta-btn">Réserver dans mon agenda</a>
+      <a href="#reserver" class="hover-btn btn-filled">
+        <span class="btn-text">Réserver</span>
+        <span class="btn-text-hover">Réserver <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        <span class="btn-bg"></span>
+      </a>
     </div>
     <div class="scroll-hint">Découvrir</div>
   </section>
@@ -660,13 +710,17 @@
         <p class="details">Jussy – Meuret, arrêt de bus &middot; Genève</p>
 
         <div class="calendar-options">
-          <a class="cta-btn"
+          <a class="hover-btn btn-filled"
              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hors%20du%20Temps%20%E2%80%94%20DYS%20%26%20Friends&dates=20260822T113000Z/20260822T213000Z&location=Jussy%20%E2%80%93%20Meuret%2C%20arr%C3%AAt%20de%20bus%2C%20Gen%C3%A8ve&details=Gastronomie%2C%20Art%20%26%20Musique.%20Une%20journ%C3%A9e%20hors%20du%20temps.%20Paiement%20%3A%20Cash%20%26%20TWINT"
              target="_blank" rel="noopener">
-            Google Calendar
+            <span class="btn-text">Google Calendar</span>
+            <span class="btn-text-hover">Google Calendar <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="btn-bg"></span>
           </a>
-          <a class="cal-link" href="hors-du-temps.ics" download>
-            Apple / Outlook (.ics)
+          <a class="hover-btn" href="hors-du-temps.ics" download>
+            <span class="btn-text">Apple / Outlook</span>
+            <span class="btn-text-hover">Télécharger .ics <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="btn-bg"></span>
           </a>
         </div>
 
