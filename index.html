@@ -7,7 +7,7 @@
   <meta name="description" content="Une journée hors du temps — Gastronomie, Art & Musique. Jussy, Genève. 22 août 2026.">
   <meta property="og:title" content="Hors du Temps — DYS & Friends">
   <meta property="og:description" content="Gastronomie, Art & Musique. Jussy – Meuret, Genève. Samedi 22 août 2026, 13h30–23h30.">
-  <meta property="og:image" content="assets/bg-sunset.jpg">
+  <meta property="og:image" content="assets/photo-storm-clouds.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--dark);
-      background: var(--warm-white);
+      background: var(--dark);
       overflow-x: hidden;
     }
 
@@ -37,6 +37,7 @@
     .hero {
       position: relative;
       min-height: 100vh;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -119,15 +120,13 @@
       color: #fff;
       text-decoration: none;
       font-family: 'Inter', sans-serif;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       border: none;
       cursor: pointer;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
 
     .cta-btn:hover {
@@ -163,9 +162,13 @@
       50% { transform: translateX(-50%) translateY(8px); }
     }
 
-    /* SECTIONS */
-    section {
-      padding: 5rem 1.5rem;
+    /* FULL-WIDTH SECTIONS */
+    .full-section {
+      width: 100%;
+      padding: 5rem 2rem;
+    }
+
+    .full-section .inner {
       max-width: 900px;
       margin: 0 auto;
     }
@@ -191,15 +194,27 @@
       margin: 0 auto;
     }
 
-    /* INTRO */
+    /* INTRO — with food photo bg */
     .intro {
+      position: relative;
+      width: 100%;
       text-align: center;
-      background: var(--cream);
-      max-width: 100%;
-      padding: 5rem 1.5rem;
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
+
+    .intro::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/photo-food.jpg') center/cover no-repeat;
+      filter: brightness(0.3);
+      z-index: 0;
     }
 
     .intro-inner {
+      position: relative;
+      z-index: 1;
       max-width: 750px;
       margin: 0 auto;
     }
@@ -208,17 +223,52 @@
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--purple);
+      color: var(--gold-light);
       margin-bottom: 1.5rem;
     }
 
     .intro .body {
       font-size: 1.05rem;
       line-height: 1.9;
-      color: #555;
+      color: rgba(255,255,255,0.85);
     }
 
-    /* CUISINE */
+    /* CUISINE — with golden clouds bg */
+    .cuisine-section {
+      position: relative;
+      width: 100%;
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
+
+    .cuisine-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/photo-golden-clouds.jpg') center/cover no-repeat;
+      filter: brightness(0.35);
+      z-index: 0;
+    }
+
+    .cuisine-section .inner {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .cuisine-section .section-title {
+      color: #fff;
+    }
+
+    .cuisine-section .section-title .accent {
+      color: var(--gold-light);
+    }
+
+    .cuisine-section .section-text {
+      color: rgba(255,255,255,0.8);
+    }
+
     .cuisine-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -229,31 +279,34 @@
     .cuisine-card {
       text-align: center;
       padding: 2rem 1.5rem;
-      background: var(--cream);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
       border-top: 3px solid var(--gold);
       transition: transform 0.3s ease;
     }
 
     .cuisine-card:hover {
       transform: translateY(-4px);
+      background: rgba(255,255,255,0.15);
     }
 
     .cuisine-card h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       margin-bottom: 0.8rem;
-      color: var(--dark);
+      color: #fff;
     }
 
     .cuisine-card p {
       font-size: 0.9rem;
       line-height: 1.6;
-      color: #666;
+      color: rgba(255,255,255,0.75);
     }
 
     /* PARALLAX BREAK */
     .parallax-break {
       position: relative;
+      width: 100%;
       height: 50vh;
       min-height: 300px;
       overflow: hidden;
@@ -293,10 +346,37 @@
       text-align: center;
       max-width: 600px;
       line-height: 1.5;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
-    /* ART & MUSIC */
+    /* ART & MUSIC — with bench photo bg */
+    .art-section {
+      position: relative;
+      width: 100%;
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
+
+    .art-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/photo-bench.jpg') center/cover no-repeat;
+      filter: brightness(0.3);
+      z-index: 0;
+    }
+
+    .art-section .inner {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .art-section .section-title {
+      color: #fff;
+    }
+
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -312,13 +392,13 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.4rem;
       margin-bottom: 1rem;
-      color: var(--dark);
+      color: #fff;
     }
 
     .two-col .col p {
       font-size: 1rem;
       line-height: 1.8;
-      color: #555;
+      color: rgba(255,255,255,0.8);
     }
 
     .divider {
@@ -328,13 +408,82 @@
       margin: 1rem 0;
     }
 
-    /* FINAL CTA */
-    .final-cta {
+    /* VIN — with window photo bg */
+    .vin-section {
+      position: relative;
+      width: 100%;
       text-align: center;
-      background: var(--dark);
-      max-width: 100%;
-      padding: 5rem 1.5rem;
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
+
+    .vin-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/photo-window.jpg') center/cover no-repeat;
+      filter: brightness(0.3);
+      z-index: 0;
+    }
+
+    .vin-section .inner {
+      position: relative;
+      z-index: 1;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .vin-section .section-title {
       color: #fff;
+    }
+
+    .vin-section .body {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* SECOND PARALLAX — eclipse */
+    .parallax-break-2 {
+      position: relative;
+      width: 100%;
+      height: 40vh;
+      min-height: 250px;
+      overflow: hidden;
+    }
+
+    .parallax-break-2::before {
+      content: '';
+      position: absolute;
+      inset: -20% 0;
+      background: url('assets/photo-eclipse.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+
+    /* FINAL CTA — with building photo bg */
+    .final-cta {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      padding: 5rem 2rem;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/photo-building.jpg') center/cover no-repeat;
+      filter: brightness(0.25);
+      z-index: 0;
+    }
+
+    .final-cta .inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .final-cta .section-title { color: #fff; }
@@ -353,10 +502,6 @@
       letter-spacing: 0.05em;
     }
 
-    .final-cta .cta-btn {
-      margin-top: 2rem;
-    }
-
     .calendar-options {
       display: flex;
       gap: 1rem;
@@ -365,32 +510,43 @@
       margin-top: 1.5rem;
     }
 
+    .calendar-options .cta-btn,
+    .calendar-options .cal-link {
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      min-width: 220px;
+    }
+
     .cal-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
-      padding: 0.7rem 1.5rem;
-      border: 1px solid rgba(255,255,255,0.25);
-      color: rgba(255,255,255,0.8);
+      border: 2px solid var(--gold);
+      color: var(--gold);
       text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
+      background: transparent;
       transition: all 0.3s ease;
     }
 
     .cal-link:hover {
-      border-color: var(--gold);
-      color: var(--gold);
+      background: var(--gold);
+      color: #fff;
     }
 
     /* FOOTER */
     footer {
+      width: 100%;
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.8rem;
       color: #999;
       background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
     /* FADE-IN ANIMATION */
@@ -433,31 +589,33 @@
   </div>
 
   <!-- CUISINE -->
-  <section>
-    <h2 class="section-title fade-in">Le plaisir de la <span class="accent">cuisine</span></h2>
-    <p class="section-text fade-in">
-      Une cuisine généreuse autour de beaux produits, travaillés avec respect, créativité et simplicité.
-      Une cuisine qui laisse la place au produit, mais surtout au plaisir de manger et de partager.
-    </p>
-    <div class="cuisine-grid fade-in">
-      <div class="cuisine-card">
-        <h3>Végétal</h3>
-        <p>Produits de saison, fraîcheur et couleurs</p>
-      </div>
-      <div class="cuisine-card">
-        <h3>Viande</h3>
-        <p>De belles pièces cuisinées avec générosité</p>
-      </div>
-      <div class="cuisine-card">
-        <h3>Mer</h3>
-        <p>Poisson & produits de la mer — fraîcheur et simplicité</p>
-      </div>
-      <div class="cuisine-card">
-        <h3>Desserts</h3>
-        <p>Fruits de saison travaillés et braisés</p>
+  <div class="cuisine-section">
+    <div class="inner">
+      <h2 class="section-title fade-in">Le plaisir de la <span class="accent">cuisine</span></h2>
+      <p class="section-text fade-in">
+        Une cuisine généreuse autour de beaux produits, travaillés avec respect, créativité et simplicité.
+        Une cuisine qui laisse la place au produit, mais surtout au plaisir de manger et de partager.
+      </p>
+      <div class="cuisine-grid fade-in">
+        <div class="cuisine-card">
+          <h3>Végétal</h3>
+          <p>Produits de saison, fraîcheur et couleurs</p>
+        </div>
+        <div class="cuisine-card">
+          <h3>Viande</h3>
+          <p>De belles pièces cuisinées avec générosité</p>
+        </div>
+        <div class="cuisine-card">
+          <h3>Desserts</h3>
+          <p>Fruits de saison travaillés et braisés</p>
+        </div>
+        <div class="cuisine-card">
+          <h3>Mer</h3>
+          <p>Poisson & produits de la mer — fraîcheur et simplicité</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- PARALLAX BREAK -->
   <div class="parallax-break">
@@ -469,72 +627,78 @@
   </div>
 
   <!-- ART & MUSIC -->
-  <section>
-    <h2 class="section-title fade-in">Art, Artisanat <span class="accent">&</span> Musique</h2>
-    <div class="two-col fade-in">
-      <div class="col">
-        <h3>Art & Artisanat</h3>
-        <div class="divider"></div>
-        <p>
-          Photographes et peintres présenteront leurs œuvres tout au long de la journée.
-          Un artisan créateur de bijoux sera également présent pour faire découvrir son univers,
-          ses créations et son savoir-faire.
-        </p>
-      </div>
-      <div class="col">
-        <h3>Musique & Énergie</h3>
-        <div class="divider"></div>
-        <p>
-          Les DJ feront évoluer l'ambiance au fil des heures&nbsp;: une après-midi conviviale
-          qui laissera progressivement place à une énergie plus festive jusqu'à la soirée.
-        </p>
+  <div class="art-section">
+    <div class="inner">
+      <h2 class="section-title fade-in">Art, Artisanat <span class="accent">&</span> Musique</h2>
+      <div class="two-col fade-in">
+        <div class="col">
+          <h3>Art & Artisanat</h3>
+          <div class="divider"></div>
+          <p>
+            Photographes et peintres présenteront leurs œuvres tout au long de la journée.
+            Un artisan créateur de bijoux sera également présent pour faire découvrir son univers,
+            ses créations et son savoir-faire.
+          </p>
+        </div>
+        <div class="col">
+          <h3>Musique & Énergie</h3>
+          <div class="divider"></div>
+          <p>
+            Les DJ feront évoluer l'ambiance au fil des heures&nbsp;: une après-midi conviviale
+            qui laissera progressivement place à une énergie plus festive jusqu'à la soirée.
+          </p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- VIN -->
-  <div class="intro">
-    <div class="intro-inner fade-in">
-      <h2 class="section-title">Vin <span class="accent">&</span> Convivialité</h2>
-      <p class="body">
+  <div class="vin-section">
+    <div class="inner">
+      <h2 class="section-title fade-in">Vin <span class="accent">&</span> Convivialité</h2>
+      <p class="body fade-in">
         Des vins locaux et différentes bières accompagneront la journée.
         Un verre à la main, une assiette à partager, de la musique et de belles rencontres.
       </p>
     </div>
   </div>
 
+  <!-- ECLIPSE BREAK -->
+  <div class="parallax-break-2"></div>
+
   <!-- FINAL CTA -->
   <div class="final-cta" id="reserver">
-    <h2 class="section-title fade-in">Plus qu'un événement</h2>
-    <p class="section-text fade-in" style="color:rgba(255,255,255,0.75); margin-bottom: 1rem;">
-      Une rencontre entre la cuisine, l'art, l'artisanat, le vin et la musique,
-      portée par une seule envie&nbsp;: créer un moment vivant, authentique et chaleureux.
-    </p>
-    <div class="fade-in">
-      <p class="details">Samedi 22 Août 2026 &middot; 13h30 – 23h30</p>
-      <p class="details">Jussy – Meuret, arrêt de bus &middot; Genève</p>
+    <div class="inner">
+      <h2 class="section-title fade-in">Plus qu'un événement</h2>
+      <p class="section-text fade-in" style="color:rgba(255,255,255,0.75); margin-bottom: 1rem;">
+        Une rencontre entre la cuisine, l'art, l'artisanat, le vin et la musique,
+        portée par une seule envie&nbsp;: créer un moment vivant, authentique et chaleureux.
+      </p>
+      <div class="fade-in">
+        <p class="details">Samedi 22 Août 2026 &middot; 13h30 – 23h30</p>
+        <p class="details">Jussy – Meuret, arrêt de bus &middot; Genève</p>
 
-      <div class="calendar-options">
-        <a class="cta-btn"
-           href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hors%20du%20Temps%20%E2%80%94%20DYS%20%26%20Friends&dates=20260822T113000Z/20260822T213000Z&location=Jussy%20%E2%80%93%20Meuret%2C%20arr%C3%AAt%20de%20bus%2C%20Gen%C3%A8ve&details=Gastronomie%2C%20Art%20%26%20Musique.%20Une%20journ%C3%A9e%20hors%20du%20temps.%20Paiement%20%3A%20Cash%20%26%20TWINT"
-           target="_blank" rel="noopener">
-          Google Calendar
-        </a>
-        <a class="cal-link" href="hors-du-temps.ics" download>
-          Apple / Outlook (.ics)
-        </a>
+        <div class="calendar-options">
+          <a class="cta-btn"
+             href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hors%20du%20Temps%20%E2%80%94%20DYS%20%26%20Friends&dates=20260822T113000Z/20260822T213000Z&location=Jussy%20%E2%80%93%20Meuret%2C%20arr%C3%AAt%20de%20bus%2C%20Gen%C3%A8ve&details=Gastronomie%2C%20Art%20%26%20Musique.%20Une%20journ%C3%A9e%20hors%20du%20temps.%20Paiement%20%3A%20Cash%20%26%20TWINT"
+             target="_blank" rel="noopener">
+            Google Calendar
+          </a>
+          <a class="cal-link" href="hors-du-temps.ics" download>
+            Apple / Outlook (.ics)
+          </a>
+        </div>
+
+        <p class="payment">Paiement : Cash & TWINT</p>
       </div>
-
-      <p class="payment">Paiement : Cash & TWINT</p>
     </div>
   </div>
 
   <footer>
-    &copy; 2026 DYS & Food — The New Concept
+    &copy; 2026 DYS & Food — The New Concept &middot; Tous droits réservés
   </footer>
 
   <script>
-    // Intersection Observer for fade-in animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
